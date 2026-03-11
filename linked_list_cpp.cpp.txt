@@ -1,0 +1,97 @@
+#include<iostream>
+
+using namespace std;
+class Node{ // Node class to represent each node in the linked list, which contains an integer data and a pointer to the next node. 
+    public: // the constructor initializes the data and sets the next pointer to nullptr.
+    int data; // pointer to the next node in the list. The constructor initializes the data and sets the next pointer to nullptr.
+    Node* next; // the pointer is of node type, which allows us to create a linked list by connecting nodes together.
+    Node(int val){
+        data = val;
+        next = nullptr;
+    }
+};
+// Function to display the linked list
+void display(Node* head){
+    Node* p = head;
+    while(p){
+        cout<<p->data<<"->";
+        p = p->next;
+    }
+    cout<<"NULL";
+};
+
+Node* insertatstart(Node * head,int y){
+    Node * x1 = new Node(y);
+    x1->next = head;
+    return x1;
+}
+
+void insertatend(Node* first,int y){
+    Node* x1 = new Node(y);
+    Node* p = first;
+    while(p->next != NULL){
+        p = p->next;
+    }
+    p->next = x1;
+}
+void insertbefore(int x, int y, Node* &head){
+    Node* x1 = new Node(y);
+
+    // Case 1: Insert before head
+    if(head->data == x){
+        x1->next = head;
+        head = x1;
+        return;
+    }
+
+    Node* p = head;
+    while(p->next != NULL && p->next->data != x){
+        p = p->next;
+    }
+
+    // Case 2: Target not found
+    if(p->next == NULL){
+        cout << "Value " << x << " not found in list.\n";
+        delete x1; // avoid memory leak
+        return;
+    }
+
+    // Case 3: Insert before target
+    x1->next = p->next;
+    p->next = x1;
+}
+
+void deletestart(Node* &head){
+   
+    Node* p = head;
+    p ->next= NULL;
+    free(p);
+}
+
+int main(){
+    system("CLS");
+    Node* n1 = new Node(20);
+    Node* n2 = new Node(30);
+    Node* n3 = new Node(12);
+ 
+    n1->next = n2;   
+    n2->next = n3;
+    
+     display(n1);
+     cout<<"\n";
+     Node* z = insertatstart(n1,101);
+        display(z);
+        cout<<"\n";
+        insertatend(z,2000);
+        display(z);
+            cout<<"\n";
+            insertbefore(30,500,z);
+            display(z);
+           cout<<"\n";
+            deletestart(n1);
+            display(n1);
+        
+    return 0;
+}
+// wap to count 
+

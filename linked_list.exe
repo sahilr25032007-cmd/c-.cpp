@@ -1,0 +1,47 @@
+// wap to count no of nodes which coutain data as x
+#include <stdio.h>
+#include <stdlib.h>
+
+// Define the structure for a node
+struct Node {
+    int data;
+    struct Node* next;
+};
+
+// Function to create a new node
+struct Node* createNode(int data) {
+    struct Node* newNode = (struct Node*)malloc(sizeof(struct Node));
+    newNode->data = data;
+    newNode->next = NULL;
+    return newNode;
+}
+
+// Function to count nodes with data equal to x
+int countNodesWithX(struct Node* head, int x) {
+    int count = 0;
+    struct Node* current = head;
+    while (current != NULL) {
+        if (current->data == x) {
+            count++;
+        }
+        current = current->next;
+    }
+    return count;
+}
+
+int main() {
+    // Example linked list: 10 -> 20 -> 10 -> 30 -> 10
+    struct Node* head = createNode(10);
+    head->next = createNode(20);
+    head->next->next = createNode(10);
+    head->next->next->next = createNode(30);
+    head->next->next->next->next = createNode(10);
+
+    int x = 10;
+    int result = countNodesWithX(head, x);
+
+    printf("Number of nodes containing %d = %d\n", x, result);
+
+    return 0;
+}
+// giv
