@@ -2,7 +2,7 @@
 #include <string>
 using namespace std;
 
-// Node structure for Patient
+
 struct Patient {
     int id;
     string name;
@@ -11,7 +11,7 @@ struct Patient {
     Patient* next;
 };
 
-// Linked List class
+
 class PatientList {
 private:
     Patient* head;
@@ -19,7 +19,7 @@ private:
 public:
     PatientList() : head(nullptr) {}
 
-    // Add new patient
+    
     void addPatient(int id, string name, int age, string disease) {
         Patient* newPatient = new Patient{id, name, age, disease, nullptr};
         if (!head) {
@@ -32,7 +32,7 @@ public:
         cout << "Patient added successfully!\n";
     }
 
-    // Display all patients
+   
     void displayPatients() {
         if (!head) {
             cout << "No patients in the list.\n";
@@ -49,7 +49,7 @@ public:
         }
     }
 
-    // Delete patient by ID
+    
     void deletePatient(int id) {
         if (!head) {
             cout << "List is empty.\n";
@@ -77,7 +77,7 @@ public:
     }
 };
 
-// Menu-driven program
+
 int main() {
     PatientList list;
     int choice;
